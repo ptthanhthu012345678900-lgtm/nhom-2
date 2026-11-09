@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nhóm 1 — Bộ thủ con người</title>
+<style>
+:root{
+  --paper:#faf6ef; --ink:#2b2620; --muted:#8a7d6c;
+  --line:#e8dcc8; --accent:#5a6a9a; --accent-soft:#dce0f0;
+  --cjk:"Noto Serif CJK SC","Songti SC","PingFang SC","Microsoft YaHei",serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+     background:var(--paper);color:var(--ink);line-height:1.5}
+main{max-width:640px;margin:0 auto;padding:24px 18px 56px}
+h1{font-size:.9rem;font-weight:600;margin:0 0 4px;text-align:center;
+   color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+h1 + p{text-align:center;font-size:.8rem;color:var(--muted);margin:0 0 16px}
+
+.stage{background:#fff;border-radius:26px;padding:10px;
+       border:1.5px solid var(--line);overflow:hidden;
+       box-shadow:0 8px 32px rgba(90,106,154,.08)}
+svg#fig{width:100%;height:auto;display:block}
+
+.hotspot{cursor:pointer;outline:none;
+  transform-box:fill-box;transform-origin:center;
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
+.hotspot:hover{transform:scale(1.14)}
+.hotspot circle{
+  fill:url(#spot);stroke:var(--accent);stroke-width:1.8;
+  filter:drop-shadow(0 2px 4px rgba(90,106,154,.3));
+  transition:fill .2s,stroke-width .2s;
+}
+.hotspot .glyph{
+  font-family:var(--cjk);font-size:21px;fill:var(--ink);
+  text-anchor:middle;dominant-baseline:central;
+  pointer-events:none;transition:fill .2s;
+}
+.hotspot.sel{transform:scale(1.14)}
+.hotspot.sel circle{fill:var(--accent);stroke:#3a4a6a;stroke-width:2.5}
+.hotspot.sel .glyph{fill:#fff}
+.hotspot:focus-visible circle{stroke-width:4}
+
+.card{background:#fff;border-radius:26px;border:1.5px solid var(--line);
+      padding:28px 20px 26px;margin-top:14px;text-align:center;min-height:260px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      box-shadow:0 8px 32px rgba(90,106,154,.08)}
+.card .icon{font-size:76px;line-height:1;margin-bottom:12px;
+             filter:drop-shadow(0 4px 10px rgba(0,0,0,.12))}
+.card .glyph{font-family:var(--cjk);font-size:62px;line-height:1;
+             color:var(--accent);margin-bottom:4px}
+.card .variant{font-family:var(--cjk);font-size:.95rem;color:var(--muted);
+               margin-bottom:6px}
+.card .pron{font-size:1.3rem;margin:0 0 2px;letter-spacing:.02em}
+.card .pron .hv{color:var(--muted);margin-left:8px;font-size:1rem;letter-spacing:0}
+.card .meaning{font-size:1.3rem;font-weight:600;margin:0 0 20px;
+               color:var(--accent)}
+.card .examples{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.card .ex{display:flex;flex-direction:column;align-items:center;gap:1px;
+          padding:8px 12px;border-radius:12px;background:#fdfaf5;
+          border:1px solid var(--line);min-width:60px}
+.card .ex .c{font-family:var(--cjk);font-size:28px;line-height:1.15}
+.card .ex .hv{font-size:.7rem;color:var(--muted)}
+.card .ex .m{font-size:.78rem}
+.card .hint{color:var(--muted);font-size:1.1rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Nhóm 1 — Bộ thủ con người</h1>
+  <p>Chạm vào một thành viên</p>
+
+  <section class="stage">
+    <svg id="fig" viewBox="0 0 520 440" role="img" aria-label="Gia đình ba người">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#b8dcec"/>
+          <stop offset="100%" stop-color="#e8f2f6"/>
+        </linearGradient>
+        <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#a4cc80"/>
+          <stop offset="100%" stop-color="#5a7a38"/>
+        </linearGradient>
+        <radialGradient id="skin" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stop-color="#ffe4c8"/>
+          <stop offset="100%" stop-color="#e8b088"/>
+        </radialGradient>
+        <linearGradient id="shirtMan" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6a9ad8"/>
+          <stop offset="100%" stop-color="#3a6aa0"/>
+        </linearGradient>
+        <linearGradient id="pantsMan" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a5a6e"/>
+          <stop offset="100%" stop-color="#2a3a4e"/>
+        </linearGradient>
+        <linearGradient id="dressWoman" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e88098"/>
+          <stop offset="100%" stop-color="#b04060"/>
+        </linearGradient>
+        <linearGradient id="hairWoman" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a2a18"/>
+          <stop offset="100%" stop-color="#2a1a08"/>
+        </linearGradient>
+        <linearGradient id="shirtChild" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f0c048"/>
+          <stop offset="100%" stop-color="#c89020"/>
+        </linearGradient>
+        <linearGradient id="hairMan" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3a2a1a"/>
+          <stop offset="100%" stop-color="#1a1008"/>
+        </linearGradient>
+        <radialGradient id="spot" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#fff"/>
+          <stop offset="100%" stop-color="#e8ecf4"/>
+        </radialGradient>
+        <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
+      </defs>
+
+      <!-- bầu trời -->
+      <rect width="520" height="440" fill="url(#sky)"/>
+
+      <!-- mặt trời -->
+      <circle cx="460" cy="60" r="24" fill="#ffd23f" opacity="0.9"/>
+      <circle cx="460" cy="60" r="34" fill="#ffd23f" opacity="0.25" filter="url(#blur)"/>
+
+      <!-- mây -->
+      <ellipse cx="100" cy="60" rx="34" ry="11" fill="#fff" opacity="0.75"/>
+      <ellipse cx="128" cy="55" rx="26" ry="13" fill="#fff" opacity="0.75"/>
+      <ellipse cx="270" cy="45" rx="30" ry="10" fill="#fff" opacity="0.6"/>
+
+      <!-- đồi xa -->
+      <path d="M0 280 Q130 250 260 275 Q390 250 520 275 L520 300 L0 300 Z"
+            fill="#a8c890" opacity="0.7"/>
+
+      <!-- mặt đất -->
+      <rect y="290" width="520" height="150" fill="url(#grass)"/>
+
+      <!-- hoa -->
+      <circle cx="40" cy="400" r="3" fill="#ff6b8a"/>
+      <circle cx="480" cy="408" r="3" fill="#ffcb47"/>
+      <circle cx="470" cy="410" r="2.5" fill="#a880d4"/>
+
+      <!-- ===== NGƯỜI ĐÀN ÔNG (人) — trái ===== -->
+      <g id="man">
+        <!-- bóng -->
+        <ellipse cx="130" cy="418" rx="42" ry="6" fill="#2a3a1a" opacity="0.28"/>
+
+        <!-- chân -->
+        <rect x="112" y="360" width="14" height="55" fill="url(#pantsMan)" rx="3"/>
+        <rect x="134" y="360" width="14" height="55" fill="url(#pantsMan)" rx="3"/>
+        <!-- giày -->
+        <ellipse cx="118" cy="416" rx="11" ry="4.5" fill="#1a1008"/>
+        <ellipse cx="142" cy="416" rx="11" ry="4.5" fill="#1a1008"/>
+
+        <!-- thân áo -->
+        <path d="M 105 285 Q 105 270 115 265 L 145 265 Q 155 270 155 285 L 155 365 Q 130 372 105 365 Z"
+              fill="url(#shirtMan)"/>
+        <!-- cổ áo -->
+        <path d="M 118 268 L 130 280 L 142 268" stroke="#2a4a80" stroke-width="2"
+              fill="none" stroke-linejoin="round"/>
+
+        <!-- tay trái — đưa ra ngoài -->
+        <path d="M 108 288 Q 82 310 78 355" stroke="url(#shirtMan)" stroke-width="16"
+              stroke-linecap="round" fill="none"/>
+        <circle cx="76" cy="360" r="8" fill="url(#skin)"/>
+
+        <!-- tay phải — đưa ra ngoài -->
+        <path d="M 152 288 Q 178 310 182 355" stroke="url(#shirtMan)" stroke-width="16"
+              stroke-linecap="round" fill="none"/>
+        <circle cx="184" cy="360" r="8" fill="url(#skin)"/>
+
+        <!-- cổ -->
+        <rect x="124" y="252" width="12" height="18" rx="3" fill="url(#skin)"/>
+
+        <!-- đầu -->
+        <circle cx="130" cy="235" r="26" fill="url(#skin)"/>
+        <!-- tóc -->
+        <path d="M 105 235 Q 100 205 130 202 Q 160 205 155 235 Q 152 218 130 216 Q 108 218 105 235 Z"
+              fill="url(#hairMan)"/>
+        <!-- mắt -->
+        <circle cx="122" cy="236" r="2" fill="#2a1a08"/>
+        <circle cx="138" cy="236" r="2" fill="#2a1a08"/>
+        <!-- miệng (cười) -->
+        <path d="M 125 246 Q 130 250 135 246" stroke="#a5664a" stroke-width="1.8"
+              fill="none" stroke-linecap="round"/>
+      </g>
+
+      <!-- ===== NGƯỜI PHỤ NỮ (女) — giữa ===== -->
+      <g id="woman">
+        <!-- bóng -->
+        <ellipse cx="260" cy="418" rx="46" ry="6" fill="#2a3a1a" opacity="0.28"/>
+
+        <!-- chân (dưới váy) -->
+        <rect x="246" y="380" width="10" height="35" fill="url(#skin)" rx="2"/>
+        <rect x="264" y="380" width="10" height="35" fill="url(#skin)" rx="2"/>
+        <!-- giày cao gót -->
+        <path d="M 246 415 L 256 415 L 256 418 L 244 418 Z" fill="#a02a4a"/>
+        <path d="M 264 415 L 274 415 L 276 418 L 264 418 Z" fill="#a02a4a"/>
+
+        <!-- váy -->
+        <path d="M 232 285 Q 232 272 242 267 L 278 267 Q 288 272 288 285 L 296 388 Q 260 396 224 388 Z"
+              fill="url(#dressWoman)"/>
+        <!-- viền váy -->
+        <path d="M 224 388 Q 260 396 296 388" stroke="#8a2040" stroke-width="2" fill="none"/>
+        <!-- cổ áo -->
+        <path d="M 248 269 L 260 282 L 272 269" stroke="#8a2040" stroke-width="2"
+              fill="none" stroke-linejoin="round"/>
+        <!-- thắt lưng -->
+        <rect x="235" y="310" width="50" height="8" fill="#8a2040" rx="2"/>
+
+        <!-- tay (đưa vào trong, tay chống hông) -->
+        <path d="M 234 288 Q 218 310 224 345" stroke="url(#skin)" stroke-width="11"
+              stroke-linecap="round" fill="none"/>
+        <path d="M 286 288 Q 302 310 296 345" stroke="url(#skin)" stroke-width="11"
+              stroke-linecap="round" fill="none"/>
+        <circle cx="224" cy="348" r="6" fill="url(#skin)"/>
+        <circle cx="296" cy="348" r="6" fill="url(#skin)"/>
+
+        <!-- cổ -->
+        <rect x="254" y="254" width="12" height="18" rx="3" fill="url(#skin)"/>
+
+        <!-- tóc dài phía sau -->
+        <path d="M 228 240 Q 222 300 232 340 L 244 340 Q 232 300 236 245 Z"
+              fill="url(#hairWoman)"/>
+        <path d="M 292 240 Q 298 300 288 340 L 276 340 Q 288 300 284 245 Z"
+              fill="url(#hairWoman)"/>
+
+        <!-- đầu -->
+        <circle cx="260" cy="235" r="26" fill="url(#skin)"/>
+        <!-- tóc mái -->
+        <path d="M 234 235 Q 230 202 260 200 Q 290 202 286 235 Q 282 216 260 214 Q 238 216 234 235 Z"
+              fill="url(#hairWoman)"/>
+        <!-- mắt -->
+        <circle cx="252" cy="236" r="2.2" fill="#2a1a08"/>
+        <circle cx="268" cy="236" r="2.2" fill="#2a1a08"/>
+        <!-- lông mi -->
+        <line x1="248" y1="232" x2="255" y2="233" stroke="#2a1a08" stroke-width="1.2"/>
+        <line x1="264" y1="233" x2="271" y2="232" stroke="#2a1a08" stroke-width="1.2"/>
+        <!-- môi hồng -->
+        <path d="M 255 248 Q 260 252 265 248" stroke="#c83060" stroke-width="2"
+              fill="none" stroke-linecap="round"/>
+        <!-- má hồng -->
+        <ellipse cx="243" cy="242" rx="4" ry="2.5" fill="#ff8a9a" opacity="0.55"/>
+        <ellipse cx="277" cy="242" rx="4" ry="2.5" fill="#ff8a9a" opacity="0.55"/>
+      </g>
+
+      <!-- ===== ĐỨA TRẺ (子) — phải ===== -->
+      <g id="child">
+        <!-- bóng -->
+        <ellipse cx="400" cy="418" rx="32" ry="5" fill="#2a3a1a" opacity="0.28"/>
+
+        <!-- chân ngắn -->
+        <rect x="385" y="385" width="10" height="32" fill="url(#skin)" rx="2"/>
+        <rect x="405" y="385" width="10" height="32" fill="url(#skin)" rx="2"/>
+        <!-- giày -->
+        <ellipse cx="390" cy="418" rx="9" ry="3.5" fill="#2a1a08"/>
+        <ellipse cx="410" cy="418" rx="9" ry="3.5" fill="#2a1a08"/>
+
+        <!-- thân áo -->
+        <path d="M 378 320 Q 378 308 388 303 L 412 303 Q 422 308 422 320 L 422 390 Q 400 396 378 390 Z"
+              fill="url(#shirtChild)"/>
+        <!-- cổ áo -->
+        <path d="M 390 305 L 400 314 L 410 305" stroke="#8a6020" stroke-width="1.8"
+              fill="none" stroke-linejoin="round"/>
+        <!-- nút áo -->
+        <circle cx="400" cy="335" r="1.8" fill="#8a6020"/>
+        <circle cx="400" cy="348" r="1.8" fill="#8a6020"/>
+        <circle cx="400" cy="361" r="1.8" fill="#8a6020"/>
+
+        <!-- tay -->
+        <path d="M 380 322 Q 368 340 372 365" stroke="url(#shirtChild)" stroke-width="11"
+              stroke-linecap="round" fill="none"/>
+        <path d="M 420 322 Q 432 340 428 365" stroke="url(#shirtChild)" stroke-width="11"
+              stroke-linecap="round" fill="none"/>
+        <circle cx="372" cy="368" r="6" fill="url(#skin)"/>
+        <circle cx="428" cy="368" r="6" fill="url(#skin)"/>
+
+        <!-- cổ -->
+        <rect x="395" y="288" width="10" height="15" rx="3" fill="url(#skin)"/>
+
+        <!-- đầu (to hơn tỉ lệ người lớn) -->
+        <circle cx="400" cy="272" r="24" fill="url(#skin)"/>
+        <!-- tóc -->
+        <path d="M 378 272 Q 374 245 400 243 Q 426 245 422 272 Q 418 253 400 252 Q 382 253 378 272 Z"
+              fill="url(#hairMan)"/>
+        <!-- mắt to tròn -->
+        <circle cx="392" cy="273" r="2.5" fill="#2a1a08"/>
+        <circle cx="408" cy="273" r="2.5" fill="#2a1a08"/>
+        <!-- đốm sáng trong mắt -->
+        <circle cx="392" cy="272" r="0.8" fill="#fff"/>
+        <circle cx="408" cy="272" r="0.8" fill="#fff"/>
+        <!-- miệng cười -->
+        <path d="M 394 283 Q 400 288 406 283" stroke="#a5664a" stroke-width="1.8"
+              fill="none" stroke-linecap="round"/>
+        <!-- má hồng -->
+        <ellipse cx="384" cy="279" rx="3.5" ry="2" fill="#ff8a9a" opacity="0.6"/>
+        <ellipse cx="416" cy="279" rx="3.5" ry="2" fill="#ff8a9a" opacity="0.6"/>
+      </g>
+
+      <g id="hotspots"></g>
+    </svg>
+  </section>
+
+  <section class="card" id="card"></section>
+</main>
+
+<script>
+const NS = "http://www.w3.org/2000/svg";
+
+const RADICALS = {
+  ren: {glyph:"人", variant:"亻", pinyin:"rén", hv:"nhân", meaning:"người",     icon:"🧑",
+        ex:[{c:"休",hv:"hưu",m:"nghỉ"},{c:"你",hv:"nhĩ",m:"bạn"},{c:"仁",hv:"nhân",m:"nhân từ"}]},
+  nu:  {glyph:"女", variant:"", pinyin:"nǚ",  hv:"nữ",   meaning:"phụ nữ",    icon:"👩",
+        ex:[{c:"好",hv:"hảo",m:"tốt"},{c:"妈",hv:"ma",m:"mẹ"},{c:"姐",hv:"thư",m:"chị"}]},
+  zi:  {glyph:"子", variant:"", pinyin:"zǐ",  hv:"tử",   meaning:"trẻ em",    icon:"👶",
+        ex:[{c:"孩",hv:"hài",m:"trẻ con"},{c:"字",hv:"tự",m:"chữ"},{c:"学",hv:"học",m:"học"}]}
+};
+
+const SPOTS = [
+  {id:"ren", x:130, y:235, r:18},   /* người đàn ông */
+  {id:"nu",  x:260, y:235, r:18},   /* người phụ nữ */
+  {id:"zi",  x:400, y:272, r:16}    /* đứa trẻ */
+];
+
+const panel    = document.getElementById("card");
+const svgSpots = document.getElementById("hotspots");
+
+SPOTS.forEach(s => {
+  const r = RADICALS[s.id];
+  const g = document.createElementNS(NS,"g");
+  g.setAttribute("class","hotspot");
+  g.setAttribute("tabindex","0");
+  g.setAttribute("role","button");
+  g.setAttribute("aria-label", r.pinyin + " " + r.hv);
+  g.dataset.id = s.id;
+
+  const c = document.createElementNS(NS,"circle");
+  c.setAttribute("cx",s.x); c.setAttribute("cy",s.y); c.setAttribute("r",s.r);
+
+  const t = document.createElementNS(NS,"text");
+  t.setAttribute("class","glyph");
+  t.setAttribute("x",s.x); t.setAttribute("y",s.y);
+  t.textContent = r.glyph;
+
+  g.append(c,t);
+  g.addEventListener("click", () => select(s.id));
+  g.addEventListener("keydown", e => {
+    if(e.key==="Enter"||e.key===" "){ e.preventDefault(); select(s.id); }
+  });
+  svgSpots.appendChild(g);
+});
+
+function select(id){
+  document.querySelectorAll(".hotspot").forEach(el =>
+    el.classList.toggle("sel", el.dataset.id === id));
+  renderCard(id);
+}
+
+function renderCard(id){
+  const r = RADICALS[id];
+  panel.innerHTML = `
+    <div class="icon">${r.icon}</div>
+    <div class="glyph">${r.glyph}</div>
+    ${r.variant ? `<div class="variant">biến thể: ${r.variant}</div>` : ""}
+    <p class="pron">${r.pinyin}<span class="hv">· ${r.hv}</span></p>
+    <p class="meaning">${r.meaning}</p>
+    <div class="examples">
+      ${r.ex.map(x => `
+        <div class="ex">
+          <span class="c">${x.c}</span>
+          <span class="hv">${x.hv}</span>
+          <span class="m">${x.m}</span>
+        </div>`).join("")}
+    </div>`;
+}
+
+panel.innerHTML = `<p class="hint">👆 Chạm vào một thành viên</p>`;
+</script>
+</body>
+</html>
